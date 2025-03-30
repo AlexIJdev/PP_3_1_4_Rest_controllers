@@ -25,12 +25,12 @@ public class WebSecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize ->
-                        authorize.requestMatchers("/user").hasAnyRole("USER", "ADMIN")
-                                .requestMatchers("/**").hasRole("ADMIN"))
+                        authorize.requestMatchers("/admin/**", "/admin.js").hasRole("ADMIN")
+                                .requestMatchers("/user/**", "/user.js").hasAnyRole("ADMIN", "USER"))
                 .formLogin(form -> form.successHandler(new SuccessUserHandler()))
                 .logout((logout) -> logout.logoutUrl("/logout").logoutSuccessUrl("/login"));
 
-        // отключение секьюрности для тестирования в Postman
+        // Отключение секьюрности для тестирования в Postman
 
 //                .csrf(AbstractHttpConfigurer::disable)
 //                .authorizeHttpRequests((authorize) -> {

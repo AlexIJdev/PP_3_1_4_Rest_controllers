@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class UserGlobalExceptionHandler {
 
     @ExceptionHandler
-    private ResponseEntity<UserErrorResponse> handlerException(UserNotFoundException e) {
+    private ResponseEntity<UserErrorResponse> handleException(UserNotFoundException e) {
         UserErrorResponse userErrorResponse = new UserErrorResponse(e.getMessage());
         return new ResponseEntity<>(userErrorResponse, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler
-    private ResponseEntity<UserErrorResponse> handlerException(UserNotCreatedException e) {
+    private ResponseEntity<UserErrorResponse> handleException(UserNotCreatedException e) {
         UserErrorResponse userErrorResponse = new UserErrorResponse(e.getMessage());
         return new ResponseEntity<>(userErrorResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
-    private ResponseEntity<UserErrorResponse> handlerException(UserNotUpdatedException e) {
+    private ResponseEntity<UserErrorResponse> handleException(UserNotUpdatedException e) {
         UserErrorResponse userErrorResponse = new UserErrorResponse(e.getMessage());
         return new ResponseEntity<>(userErrorResponse, HttpStatus.BAD_REQUEST);
     }

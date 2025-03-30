@@ -1,17 +1,19 @@
-document.addEventListener("DOMContentLoaded", function () {
+getInfoOfUser();
+
+function getInfoOfUser() {
     // запрос информации о пользователе через REST API
     fetch("/user/info")
         .then(response => {
                 if (!response.ok) {
-                    console.error('Couldn\'t upload user data.');
+                    console.error("Couldn\'t upload user data.");
                 }
                 response.json()
                     .then(user => {
                         // корректное представление ролей пользователя
-                        let roles = user.roles.map(role => ' ' + role.name.replaceAll('ROLE_', ''));
+                        let roles = user.roles.map(role => " " + role.name.replaceAll("ROLE_", ""));
 
                         // отображение данных о пользователе в HEADER
-                        document.getElementById("user-mail").textContent = user.email;
+                        document.getElementById("user-email").textContent = user.email;
                         document.getElementById("user-roles").textContent = roles;
 
                         // отображение данных о пользователе в MAIN (в таблице)
@@ -25,4 +27,4 @@ document.addEventListener("DOMContentLoaded", function () {
                     .catch(error => console.error("Error when uploading user data: ", error));
             }
         )
-});
+}
